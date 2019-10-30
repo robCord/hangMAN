@@ -8,34 +8,38 @@ using namespace std;
 int main ()
 {
 	// Display Title of the program to the user
-
+	cout << "Keyword simulation decryption training program" << endl;
 	// Ask the recruit to log in using their name
-
+	cout << "Please enter your name" << endl;
+	
 	// Hold the recruit's name in a var, and address them by it throughout the simulation.
-
+	string name;
+	cin >> name;
 	// Display an overview of what Keywords II is to the recruit 
-
+	cout << "Welcome " << name << ", this program is designed to enhance your keyword decryption skills in a time efficient manor" << "\n";
 	// Display directions to the recruit on how to use Keywords
-
+	cout << "You are given a word to solve, please enter a single letters to input your guess\n";
+	cout << "You are given three guesses, should the word remain unsolved, you will fail the current simulation\n";
+	
 
 
 	// Create a collection of 10 words you had written down manually
 	// set the words into a list along with corresponding hints
 	enum fields { WORD, HINT, NUM_FIELDS };
-	
+	//number of code words to use in options for user to solve
 	const int NUM_WORDS = 10;
 	const string WORDS[NUM_WORDS][NUM_FIELDS] =
 	{
-		{"wall", "Do you feel you're banging your head against something"},
-		{"glasses", "These might help you see answer."},
-		{"labored", "Going slowly, is it"},
-		{"persistent", "Keep at it."},
-		{"jumble", "It's what the game is all about."},
-		{"knife", "This will help with cutting of loose ends."},
-		{"water", "Stay hydrated."},
-		{"compass", "Find your way."},
-		{"wallet", "Comes with some dollar bills and your ID."},
-		{"watch", "Helps keep track of time."},
+		{"work"},
+		{"runner"},
+		{"tired"},
+		{"persistent"},
+		{"chain"},
+		{"comfort"},
+		{"jogging"},
+		{"bread"},
+		{"bullet"},
+		{"black"},
 	};
 	
 	// Create an int var to count the number of simulations being run starting at 1
@@ -53,14 +57,17 @@ MainLoop:
 	{
 		int choice = rand() % NUM_WORDS;
 		string theWord = WORDS[choice][WORD];
-
+		//maximum number of tries before failing 
 		int incorrectGuesses = 3;
 
+		//keeps track of individual letters 
 		string guessedLetters;
+		//keeps track of the word entirely
 		string guess;
 
 		for (int j = 0; j < theWord.length(); j++)
 		{
+			//sets a place holder for letters 
 			guess += '_';
 		}
 		
@@ -101,6 +108,7 @@ MainLoop:
 				{
 					if (theWord[j] == letter)
 					{
+						//sets the area with the corresponding letter
 						guess[j] = letter;
 					}
 				}
@@ -117,8 +125,10 @@ MainLoop:
 
 		if (incorrectGuesses <= 0)
 		{
+			// alerts user to failing and proceeds to the next word
 			cout << "You failed this round. The answer was " << theWord << endl;
 			cout << "Moving to next round." << "\n\n";
+			//adds to rounds 
 			failedRounds++;
 		}
 		else
